@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<title>YourPhotoAlbum</title>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<h3>Compila i campi per creare la tua nuova foto</h3>
+			<form 
+				th:action="@{/users/fotos/create}" 
+				method="POST"
+				th:object="${foto}"
+			>
+				<label>Titolo</label>
+				<br>
+				<input type="text" name="title" th:value="*{title}">
+				<br>
+				<label 	style="color: red" 
+					th:if="${errors != null && errors.hasFieldErrors('title')}">
+					[[ ${errors.getFieldError('title').defaultMessage} ]]
+				</label>
+				<br>
+				<label>Descrizione</label>
+				<br>
+				<input type="text" name="description" th:value="*{description}">
+				<br>
+				<label 	style="color: red" 
+					th:if="${errors != null && errors.hasFieldErrors('description')}">
+					[[ ${errors.getFieldError('description').defaultMessage} ]]
+				</label>
+				<br>
+				<label>Url dell'immagine</label>
+				<br>
+				<input type="text" name="url" th:value="*{url}">
+				<br>
+				<label 	style="color: red" 
+					th:if="${errors != null && errors.hasFieldErrors('url')}">
+					[[ ${errors.getFieldError('url').defaultMessage} ]]
+				</label>
+				<br>
+				<input type="checkbox" name="visible">
+				<label>Visibile</label>
+				<br>
+				<br>
+				<h4>Categorie</h4>
+				<div
+					th:each="category : ${categories}"
+					th:object=${category}
+				>
+					<input th:id="${'category-' + category.id}" type="checkbox" name="categories" th:value="*{id}">
+					<label th:for="${'category-' + category.id}">[[ *{name} ]]</label>
+				</div>
+				<input hidden type="text" name="userName" th:value="${#authentication.name}">
+				<input type="submit" value="Crea">
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

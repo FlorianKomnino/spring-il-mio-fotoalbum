@@ -30,6 +30,11 @@ public class UserServ implements UserDetailsService  {
 		
 		return userRepo.save(user);
 	}
+	public User findUserByUsername(String userName) {
+		Optional<User> userOpt = userRepo.findByUsername(userName);
+		User foundUser = userOpt.get();
+		return foundUser;
+	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) 

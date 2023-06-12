@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<title>YourPhotoAlbum</title>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-12"
+			th:object="${foto}"
+		>
+			<h1>Pagina di dettaglio della foto selezionata</h1>
+			<h3>Il titolo della foto e': [[ *{title} ]]</h3>
+			<p>Descrizione: [[ *{description} ]]</p>
+			<figure class="fotoImageInSinglePage">
+				<img alt="immagine della foto" th:src="*{url}">
+			</figure>
+			<p>Categorie</p>
+			<ul>
+				<li
+					th:each="category : ${foto.getCategories()}"
+					th:object="${category}"
+				>
+					[[ *{name} ]]
+				</li>
+			</ul>
+			<br>
+			<a 
+				th:href="@{/users/fotos/update/{id} (id=*{id})}"
+				class="btn btn-warning mt-3 mb-3"
+			>
+				Modifica
+			</a>
+			<a class="btn btn-danger m-3" 
+				th:href="@{/users/fotos/delete/{id} (id=*{id})}"
+				>
+				Elimina
+			</a>
+			<br>
+			<a href="/" class="btn btn-primary">Torna alla pagina principale</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -5,13 +5,22 @@
 
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
 <link rel="stylesheet" th:href="@{/css/style.css}">
-<title>PizzaPalace</title>
+<title>YourPhotoAlbum</title>
 </head>
 <body>
 <div class="container">
 	<div class="row">
 		<div class="col-12">
-			<h1>Effettua l'accesso per entrare nel sito!</h1>
+			<h1
+				sec:authorize="!isAuthenticated()"
+			>
+				Effettua l'accesso per entrare nel sito!
+			</h1>
+			<h1
+				sec:authorize="isAuthenticated()"
+			>
+				Benvenuto/a nel tuo album di foto
+			</h1>
 			<a
 				href="/login"
 				sec:authorize="!isAuthenticated()"

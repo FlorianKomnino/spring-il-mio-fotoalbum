@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<title>YourPhotoAlbum</title>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<h1>Qui puoi gestire le tue categorie</h1>
+			<a href="/users/categories/create">Aggiungi una categoria</a>
+			<h3>Ecco la lista delle categorie gia' presenti:</h3>
+			<ul>
+				<li
+					th:each="category : ${categories}"
+					th:object="${category}"
+				>
+					<a th:href="@{/users/categories/delete/{id} (id=*{id})}">
+						Elimina
+					</a>
+					[[ *{name} ]]
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<title>YourPhotoAlbum</title>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<h1>Benvenuto/a alla web app del tuo album fotografico</h1>
+			<div
+				sec:authorize="!isAuthenticated()"
+			>
+				<h3>Per visualizzare le foto, aggiungerne o modificarne accedi: <a href="/login"> clicca qui </a></h3>
+			</div>
+			<div
+				sec:authorize="isAuthenticated()"
+			>
+				<h3>Benvenuto/a: <span class="text-danger" sec:authentication="name"></span></h3>
+				<a th:href="@{/users/fotos/create}">Aggiungi una foto</a>
+				<span> o </span>
+				<a th:href="@{/users/categories}">Vai alle categorie</a>
+				<h3>Lista di tutte le tue foto presenti</h3>
+				<h5>Ricerca per nome</h5>
+				<form class ="mt-2 mb-4" th:action="@{/users/fotos/search}" method="GET">
+					<input type="text" name="userSearch" th:value="${userSearch}">
+					<input type="submit" value="Cerca">
+				</form>
+				<ul class="d-flex flex-wrap">
+					<li
+						th:each="foto : ${fotos}"
+						th:object="${foto}"
+						th:if="${#authentication.name} == ${foto.user.getUsername()}"
+						class="m-2 border"
+					>
+						<h5>
+							[[ *{title} ]]
+						</h5>
+						<figure class="fotoImage">
+							<img class="img-fluid" alt="Foto pic" th:src="*{url}">
+						</figure>
+						<br>
+						<a 
+							th:href="@{/users/fotos/{id} (id=*{id})}"
+							class="btn btn-primary"
+						>
+							Dettagli
+						</a>
+						<a 
+							th:href="@{/users/fotos/update/{id} (id=*{id})}"
+							class="btn btn-warning"
+						>
+							Modifica
+						</a>
+						<a class="btn btn-danger" 
+							th:href="@{/users/fotos/delete/{id} (id=*{id})}"
+							>
+							Elimina
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

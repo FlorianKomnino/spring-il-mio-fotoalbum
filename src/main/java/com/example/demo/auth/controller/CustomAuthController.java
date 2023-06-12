@@ -10,13 +10,13 @@ public class CustomAuthController {
 	@GetMapping("/")
 	public String getGuestHome() {
 		
-		return "auth-home";
+		return "redirect:/users/fotos";
 	}
 	
 	@GetMapping("/users")
 	public String getUserHome() {
 		
-		return "auth-users";
+		return "userIndex";
 	}
 	
 	@GetMapping("/admin")
