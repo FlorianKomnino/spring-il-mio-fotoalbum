@@ -2,7 +2,6 @@ package com.example.demo.pojo;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import com.example.demo.auth.pojo.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -31,7 +30,8 @@ public class Foto {
 	private String description;
 	private String url;
 	private Boolean visible;
-	
+	private Boolean banned;
+
 	@ManyToMany
 	private List<Category> categories;
 	
@@ -49,6 +49,7 @@ public class Foto {
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
+		setBanned(false);
 	}
 	
 	public Foto(User user, String title, String description, String url, Boolean visible, Category...categories) {
@@ -58,6 +59,7 @@ public class Foto {
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
+		setBanned(false);
 		
 		setCategories(categories);
 	}
@@ -121,6 +123,14 @@ public class Foto {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public Boolean getBanned() {
+		return banned;
+	}
+	
+	public void setBanned(Boolean banned) {
+		this.banned = banned;
 	}
 
 	@Override

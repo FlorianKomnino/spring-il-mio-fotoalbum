@@ -71,7 +71,7 @@ export default {
     <TheWelcome />
     <div class="fotoCardsContainer">
       <div class="singleFoto" v-for="foto in fotos">
-        <FotoCard :foto="foto" />
+        <FotoCard v-if="foto.banned == false" :foto="foto" />
       </div>
     </div>
   </main>

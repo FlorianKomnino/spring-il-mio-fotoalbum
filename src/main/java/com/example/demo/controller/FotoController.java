@@ -42,6 +42,36 @@ public class FotoController {
 		return "index";
 	}
 	
+	@GetMapping("/admin/fotos")
+	public String adminIndex(Model model) {
+		
+		List<Foto> foundFotos = fotoServ.findAll();
+		model.addAttribute("fotos", foundFotos);
+		return "admin-index";
+	}
+	
+	@GetMapping("/admin/fotos/ban/{id}")
+	public String banFoto(@PathVariable int id) {
+		
+		Optional<Foto> optFoto = fotoServ.findById(id);
+		Foto fotoToUpdateBan = optFoto.get();
+		fotoToUpdateBan.setBanned(true);
+		fotoServ.save(fotoToUpdateBan);
+		
+		return "redirect:/admin/fotos";
+	}
+
+	@GetMapping("/admin/fotos/clearBan/{id}")
+	public String clearBanFoto(@PathVariable int id) {
+		
+		Optional<Foto> optFoto = fotoServ.findById(id);
+		Foto fotoToUpdateBan = optFoto.get();
+		fotoToUpdateBan.setBanned(false);
+		fotoServ.save(fotoToUpdateBan);
+		
+		return "redirect:/admin/fotos";
+	}
+	
 	@GetMapping("/users/fotos/search")
 	public String findByName(Model model, @RequestParam(required = false) String userSearch) {
 		

@@ -21,9 +21,6 @@
 				sec:authorize="isAuthenticated()"
 			>
 				<h3>Benvenuto/a: <span class="text-danger" sec:authentication="name"></span></h3>
-				<a th:href="@{/users/fotos/create}">Aggiungi una foto</a>
-				<span> o </span>
-				<a th:href="@{/users/categories}">Vai alle categorie</a>
 				<h3>Lista di tutte le tue foto presenti</h3>
 				<h5>Ricerca per nome</h5>
 				<form class ="mt-2 mb-4" th:action="@{/users/fotos/search}" method="GET">
@@ -34,47 +31,21 @@
 					<li
 						th:each="foto : ${fotos}"
 						th:object="${foto}"
-						th:if="${#authentication.name} == ${foto.user.getUsername()}"
 						class="m-2 border"
 					>
-						<h5 th:if="${foto.banned == false}">
+						<h5>
 							[[ *{title} ]]
 						</h5>
-						<h5 th:unless="${foto.banned == false}">
-							QUESTA FOTO E' STATA BANNATA
-						</h5>
+						<p th:if="${foto.visible}">Visibile</p>
+						<p th:unless="${foto.visible}">Non visibile</p>
+						<a th:href="@{/admin/fotos/ban/{id} (id=*{id})}" th:if="${foto.banned == false}">Blocca foto</a>
+						<a th:href="@{/admin/fotos/clearBan/{id} (id=*{id})}"  th:unless="${foto.banned == false}">Sblocca foto</a>
 						<figure class="fotoImage">
 							<img class="img-fluid" alt="Foto pic" th:src="*{url}">
 						</figure>
 						<br>
-						<a 
-							th:href="@{/users/fotos/{id} (id=*{id})}"
-							class="btn btn-primary"
-						>
-							Dettagli
-						</a>
-						<a 
-							th:href="@{/users/fotos/update/{id} (id=*{id})}"
-							class="btn btn-warning"
-						>
-							Modifica
-						</a>
-						<a class="btn btn-danger" 
-							th:href="@{/users/fotos/delete/{id} (id=*{id})}"
-							>
-							Elimina
-						</a>
 					</li>
 				</ul>
-			</div>
-			<div
-				sec:authorize="hasAuthority('ADMIN')"
-			>
-				<a
-					href="/admin/fotos"
-				>
-					Vai alla sezione "amministratore"
-				</a>
 			</div>
 		</div>
 	</div>
