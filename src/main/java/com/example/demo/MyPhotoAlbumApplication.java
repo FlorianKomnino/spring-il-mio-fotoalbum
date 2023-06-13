@@ -69,13 +69,25 @@ public class MyPhotoAlbumApplication implements CommandLineRunner{
 		
 		Foto f1 = new Foto(baseU1, "Prova 1", "foto di prova 1", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", true, c1);
 		Foto f2 = new Foto(baseU1, "Prova 2", "foto di prova 2", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", true, c1);
-		Foto f3 = new Foto(baseU1, "Prova 3", "foto di prova 3", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", false, c1);
-		Foto f4 = new Foto(baseU1, "Prova 4", "foto di prova 4", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", true, c4);
-		
+		Foto f3 = new Foto(baseU1, "Prova 3", "foto di prova 3", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", false, c1, c3);
+		Foto f4 = new Foto(baseU1, "Prova 4", "foto di prova 4", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", true, c4, c2);
+		Foto f5 = new Foto(baseU1, "Prova 5", "foto di prova 5", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", true, c1);
+		Foto f6 = new Foto(baseU1, "Prova 6", "foto di prova 6", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", true, c1);
+		Foto f7 = new Foto(baseU1, "Prova 7", "foto di prova 7", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", false, c1, c2, c3, c4);
+		Foto f8 = new Foto(baseU1, "Prova 8", "foto di prova 8", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", true, c4);
+		Foto f9 = new Foto(baseU1, "Prova 5", "foto di prova 5", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", true, c1);
+		Foto f10 = new Foto(baseU1, "Prova 6", "foto di prova 6", "https://st4.depositphotos.com/14431644/22076/i/450/depositphotos_220767694-stock-photo-handwriting-text-writing-example-concept.jpg", true, c1);
+
 		fotoServ.save(f1);
 		fotoServ.save(f2);
 		fotoServ.save(f3);
 		fotoServ.save(f4);
+		fotoServ.save(f5);
+		fotoServ.save(f6);
+		fotoServ.save(f7);
+		fotoServ.save(f8);
+		fotoServ.save(f9);
+		fotoServ.save(f10);
 		
 		System.out.println("lots of things saved");
 	}
